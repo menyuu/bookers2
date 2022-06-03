@@ -1,0 +1,61 @@
+<!--ここから-->
+<h2>User info</h2>
+<%= image_tag @user.get_profile_image(100, 100) %>
+
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<!--あとでアイコンに変更-->
+<%= link_to "編集", edit_user_path(@user.id) %>
+
+
+<h2>New book</h2>
+<%= form_with model: @book, url: books_path do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :opinion %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Book" %>
+  </div>
+
+<% end %>
+<!--ここまでテンプレート化-->
+
+<h2>Users</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= image_tag user.get_profile_image(80, 80) %></td>
+      <td><%= user.name %></td>
+      <td><%= link_to "Show", user_path(user.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
