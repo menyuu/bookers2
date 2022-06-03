@@ -1,2 +1,38 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h2>User info</h2>
+<%= image_tag @user.get_profile_image(100, 100) %>
+
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<!--あとでアイコンに変更-->
+<%= link_to "編集", edit_user_path(@user.id) %>
+
+
+<h2>New book</h2>
+<%= form_with model: @book, url: books_path do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div>
+    <%= f.label :opinion %>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div>
+    <%= f.submit "Create Book" %>
+  </div>
+  
+<% end %>
