@@ -1,62 +1,31 @@
-<!--ここから-->
-<h2>User info</h2>
-<%= image_tag @user.get_profile_image(100, 100) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", book: @book, user: @user %>
+    </div>
 
-<table>
-  <tbody>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
+    <div class="col-md-8 offset-md-1 mt-4 mt-md-0">
+      <h2>Book detail</h2>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+                <%= image_tag @user.get_profile_image(100, 100) %><br>
+                <%= @user.name %>
+              <% end %>
+            </td>
+            <% book = @user.books.find(params[:id]) %>
+            <td><%= link_to book.title, book_path(book) %></td>
+            <td><%= book.body %></td>
+            <% if @user == current_user %>
+              <td><%= link_to "Edit", edit_book_path(book), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
 
-<!--あとでアイコンに変更-->
-<%= link_to "編集", edit_user_path(@user.id) %>
-
-
-<h2>New book</h2>
-<%= form_with model: @book, url: books_path do |f| %>
-
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    </div>
   </div>
-
-  <div>
-    <%= f.label :opinion %>
-    <%= f.text_area :body %>
-  </div>
-
-  <div>
-    <%= f.submit "Create Book" %>
-  </div>
-
-<% end %>
-<!--ここまでテンプレート化-->
-
-
-<h2>Book detail</h2>
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <%= link_to user_path(@user.id) do %>
-          <%= image_tag @user.get_profile_image(100, 100) %>
-          <%= @user.name %>
-        <% end %>
-      </td>
-      <% book = @user.books.find(params[:id]) %>
-      <td><%= link_to book.title, book_path(book) %></td>
-      <td><%= book.body %></td>
-      <% if @user == current_user %>
-        <td><%= link_to "Edit", edit_book_path(book) %></td>
-        <td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"} %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+</div>
