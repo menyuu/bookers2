@@ -74,11 +74,12 @@
       </nav>
     </header>
     <main>
-      <% if flash[:notice] %>
-        <p id="notice">
+      <!--flashが見やすいように少し右へ-->
+      <p id="notice" class="ml-3">
+        <% if flash[:notice] %>
           <%= flash[:notice] %>
-        </p>
-      <% end %>
+        <% end %>
+      </p>
       <%= yield %>
     </main>
     <footer>
