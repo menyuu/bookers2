@@ -29,6 +29,7 @@
                 <% end %>
               <% end %>
             </td>
+            <td>コメント数：<%= book.book_comments.count %></td>
             <% if @user == current_user %>
               <td><%= link_to "Edit", edit_book_path(book), class: "btn btn-sm btn-success" %></td>
               <td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger" %></td>
@@ -36,6 +37,40 @@
           </tr>
         </tbody>
       </table>
+
+      <table>
+        <% book.book_comments.each do |book_comment| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(book_comment.user_id) do %>
+                  <%= image_tag book_comment.user.get_profile_image(80, 80) %><br>
+                  <%= book_comment.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= book_comment.comment %>
+              </td>
+              <td>
+                <% if current_user == book_comment.user %>
+                  <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+
+      <div>
+        <%= form_with model: [@book_comment, @book_comment_new], method: :post do |f| %>
+          <div>
+            <%= f.text_area :comment %>
+          </div>
+          <div>
+            <%= f.submit "送信" %>
+          </div>
+        <% end %>
+      </div>
 
     </div>
   </div>
