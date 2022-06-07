@@ -31,16 +31,16 @@ class User < ApplicationRecord
 
   def follow(user)
     unless self == user
-      relationships.create(followed_id: user.id)
+      relationships.create(followed_id: user)
     end
   end
 
   def unfollow(user)
-    relationships.find_by(followed_id: user.id).destroy
+    relationships.find_by(followed_id: user).destroy
   end
 
   def following?(user)
-    followings.inculude?(user)
+    followings.include?(user)
   end
 
 end
