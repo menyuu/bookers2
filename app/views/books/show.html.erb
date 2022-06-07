@@ -18,16 +18,8 @@
             <% book = @user.books.find(params[:id]) %>
             <td><%= link_to book.title, book_path(book) %></td>
             <td><%= book.body %></td>
-            <td>
-              <% if book.favorited_by?(current_user) %>
-                <%= link_to book_favorites_path(book.id), method: :delete, class: "text-danger" do %>
-                  <i class="fas fa-heart"></i><%= book.favorites.count %>
-                <% end %>
-              <% else %>
-                <%= link_to book_favorites_path(book.id), method: :post do %>
-                  <i class="fas fa-heart"></i><%= book.favorites.count %>
-                <% end %>
-              <% end %>
+            <td id="favorite_buttons_<%= book.id %>">
+              <%= render "favorites/favorite", book: book %>
             </td>
             <td>コメント数：<%= book.book_comments.count %></td>
             <% if @user == current_user %>
