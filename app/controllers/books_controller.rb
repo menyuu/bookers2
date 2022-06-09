@@ -8,6 +8,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @books = Book.all.order("#{sort_column} #{sort_direction}")
     @user = current_user
+    @tags = Tag.all
   end
 
   def create
