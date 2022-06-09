@@ -14,6 +14,10 @@ class Book < ApplicationRecord
 
   has_many :book_comments, dependent: :destroy
 
+  has_many :book_tags, dependent: :destroy
+  has_many :tags, through: :book_tags
+
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
@@ -28,6 +32,18 @@ class Book < ApplicationRecord
         Book.where("title LIKE ?", "%#{word}")
       when "partial"
         Book.where("title LIKE?", "%#{word}%")
+    end
+  end
+
+  def save_tag(tag_list)
+    unless self.tags == nil
+      book_tags_records = BookTag.where(book_id: self.id)
+      book_tags_records.destroy_all
+    end
+
+    tag_list.each do |tag|
+      inspected_tag = Tag.where(tag_name: tag).first_or_create
+      self.tags << inspected_tag
     end
   end
 
