@@ -2,9 +2,11 @@ class BooksController < ApplicationController
 
   before_action :correct_book, only: [:edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   def index
     @book = Book.new
-    @books = Book.all
+    @books = Book.all.order("#{sort_column} #{sort_direction}")
     @user = current_user
   end
 
@@ -61,6 +63,14 @@ class BooksController < ApplicationController
     if current_user.id != book.user_id
       redirect_to books_path
     end
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 
 end
