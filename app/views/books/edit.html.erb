@@ -33,7 +33,7 @@
           <%= f.text_area :body, class: "form-control"  %>
         </div>
 
-        <div id="book_rate">
+        <div class="form-group" id="book_rate">
           <%= f.label :rate  %>
           <div>
             <%= f.hidden_field :rate, id: :review_star %>
@@ -58,6 +58,7 @@
     starOff: "<%= asset_path('star-off.png') %>",
     starOn: "<%= asset_path('star-on.png') %>",
     scoreName: 'book[rate]',
-    half: false,
+    readOnly: true,
+    score: <%= @book.rate %>
   });
 </script>
