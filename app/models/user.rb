@@ -44,7 +44,7 @@ class User < ApplicationRecord
   end
 
 
-  def self.looks(search, word)
+  def self.looks(word, search)
     case search
       when "perfect"
         User.where("name LIKE ?", "#{word}")
@@ -54,8 +54,6 @@ class User < ApplicationRecord
         User.where("name LIKE ?", "%#{word}")
       when "partial"
         User.where("name LIKE?", "%#{word}%")
-      else
-       User.all
     end
   end
 

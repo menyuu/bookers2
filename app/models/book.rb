@@ -2,7 +2,7 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true, length: {maximum: 200}
-  
+
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
@@ -18,7 +18,7 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.looks(search, word)
+  def self.looks(word, search)
     case search
       when "perfect"
         Book.where("title LIKE ?", "#{word}")
@@ -28,8 +28,6 @@ class Book < ApplicationRecord
         Book.where("title LIKE ?", "%#{word}")
       when "partial"
         Book.where("title LIKE?", "%#{word}%")
-      else
-       Book.all
     end
   end
 
