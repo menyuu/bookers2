@@ -10,7 +10,10 @@ class SearchesController < ApplicationController
 
   def tag_search
     @tags = Tag.all
-    if params[:tag_word]
+    unless params[:tag_word]
+      @tag = Tag.find(params[:tag_id])
+      @books = @tag.books
+    else
       @tag = Tag.find_by(tag_name: params[:tag_word])
       @books = @tag.books
     end
