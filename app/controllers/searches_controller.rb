@@ -7,4 +7,13 @@ class SearchesController < ApplicationController
       @books = Book.looks(params[:word], params[:search])
     end
   end
+
+  def tag_search
+    @tags = Tag.all
+    if params[:tag_word]
+      @tag = Tag.find_by(tag_name: params[:tag_word])
+      @books = @tag.books
+    end
+  end
+
 end

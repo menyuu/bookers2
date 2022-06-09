@@ -1,0 +1,13 @@
+<% @books.each do |book| %>
+<div>
+  <%= book.title %>
+
+</div>
+<div>
+  <% book.tags.each do |name| %>
+    <%= name.tag_name %>
+  <% end %>
+
+</div>
+
+<% end %>
