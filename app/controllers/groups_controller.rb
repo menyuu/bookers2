@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+
+  before_action :correct_group, only: [:edit, :update]
+
   def index
     @groups = Group.all
     @book = Book.new
@@ -41,6 +44,13 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :introduction, :image)
+  end
+
+  def correct_group
+    group = Group.find(params[:id])
+    unless current_user.id == group.owner_id
+      redirect_to groups_path
+    end
   end
 
 end
