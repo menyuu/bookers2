@@ -1,0 +1,11 @@
+<span id="book_rate_<%= book.id %>"><% book.id %></span>
+  <script>
+    $('#book_rate_<%= book.id %>').empty();
+    $('#book_rate_<%= book.id %>').raty({
+      size: 8,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      readOnly: true,
+      score: <%= book.rate %>,
+    });
+  </script>

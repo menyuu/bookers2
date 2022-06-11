@@ -42,7 +42,7 @@
               <%= render "book_comments/comment_count", book: book %>
             </td>
             <td>
-              <span id="book_rate_<%= @book_show.id %>"><% @book_show.id %></span>
+              <%= render "rate", book: @book_show %>
             </td>
 
             <% if @user == current_user %>
@@ -78,14 +78,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-  $('#book_rate_<%= @book_show.id %>').raty({
-    size: 6,
-    starOff: '<%= asset_path('star-off.png') %>',
-    starOn: '<%= asset_path('star-on.png') %>',
-    readOnly: true,
-    score: <%= @book_show.rate %>
-  });
-</script>
