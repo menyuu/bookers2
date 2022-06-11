@@ -1,3 +1,13 @@
+<div class="container">
+  <div class="row">
+    <% if user_signed_in? %>
+      <div class="mx-auto my-3">
+        <%= render "searches/search" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <% if @book.errors.any? %>
   <div id="error_explanation">
     <h3>

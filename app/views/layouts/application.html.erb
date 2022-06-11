@@ -81,11 +81,6 @@
               <%= flash[:notice] %>
             <% end %>
           </p>
-          <% if user_signed_in? %>
-            <div class="mx-auto my-3">
-              <%= render "searches/search" %>
-            </div>
-          <% end %>
         </div>
       </div>
       <%= yield %>

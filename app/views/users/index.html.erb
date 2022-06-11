@@ -1,5 +1,15 @@
 <div class="container">
   <div class="row">
+    <% if user_signed_in? %>
+      <div class="mx-auto my-3">
+        <%= render "searches/search" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
     <div class="col-md-3">
       <%= render "info", book: @book, user: @user %>
     </div>
