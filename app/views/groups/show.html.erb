@@ -1,0 +1,6 @@
+<h2>Group Detail</h2>
+
+<%= image_tag @group.get_group_image(80, 80) %>
+<%= @group.name %>
+<%= @group.introduction %>
+<%= link_to "Edit", edit_group_path(@group) %>

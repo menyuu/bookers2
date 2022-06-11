@@ -1,0 +1,26 @@
+
+<h2>Editing Group</h2>
+<%= form_with model: @group do |f| %>
+
+  <div>
+    <%= f.label :グループ名%>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :紹介文 %>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="input-group">
+    <%= f.label :グループ画像 %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+  </div>
+
+  <div>
+    <%= f.submit "Update Group" %>
+  </div>
+
+
+
+<% end %>
