@@ -14,8 +14,8 @@ class GroupsController < ApplicationController
 
   def join
     @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to  group_path(@group)
+    @group.users.push(current_user)
+    # redirect_to  group_path(@group)
   end
 
   def new
@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.users.delete(current_user)
-    redirect_to group_path(@group)
+    # redirect_to group_path(@group)
   end
 
   private

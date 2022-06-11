@@ -27,7 +27,7 @@
             <td>
               <%= link_to @group.users.first.name, user_path(@group.users.first.id) %>
             </td>
-            <td>
+            <td class="group_users_count">
               <% @group.users[1..-1].each do |user| %>
                 <%= link_to user.name, user_path(user.id) %><br>
               <% end %>
@@ -37,15 +37,8 @@
               <td>
                 <%= link_to "Edit", edit_group_path(@group), class: "btn btn-success" %>
               </td>
-            <% elsif @group.users.include?(current_user) %>
-              <td>
-                <%= link_to "Leave this group", group_path(@group), method: :delete, class: "btn btn-danger" %>
-              </td>
-            <% else %>
-              <td>
-                <%= link_to "Join this group", group_join_path(@group), class: "btn btn-success" %>
-              </td>
             <% end %>
+              <td><span id="group_buttons"><%= render "show", group: @group %></span></td>
           </tr>
         </tbody>
       </table>
