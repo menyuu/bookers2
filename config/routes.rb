@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'search' => 'searches#search'
   get 'tag_search' => 'searches#tag_search'
   
-  resources :groups, only:[:index, :show, :new, :create, :edit, :update]
+  resources :groups do
+    get "join" => "groups#join"
+  end
 
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update] do
