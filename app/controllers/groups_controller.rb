@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   before_action :correct_group, only: [:edit, :update]
+  before_action :correct_group_mail, only: [:new_mail, :send_mail]
 
   def index
     @groups = Group.all
@@ -72,6 +73,13 @@ class GroupsController < ApplicationController
 
   def correct_group
     group = Group.find(params[:id])
+    unless current_user.id == group.owner_id
+      redirect_to groups_path
+    end
+  end
+
+  def correct_group_mail
+    group = Group.find(params[:group_id])
     unless current_user.id == group.owner_id
       redirect_to groups_path
     end

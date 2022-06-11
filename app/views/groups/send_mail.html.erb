@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+      <h2>送信が完了しました</h2>
+      <div>
+        <p>内容は以下の通りです。</p>
+        <section>
+          <h4>[タイトル]</h4>
+          <p><%= @mail_title %></p>
+        </section>
+        <section>
+          <h4>[本文]</h4>
+          <p><%= safe_join(@mail_content.split("\n"),tag(:br)) %></p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

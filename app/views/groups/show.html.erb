@@ -37,9 +37,13 @@
               <td>
                 <%= link_to "Edit", edit_group_path(@group), class: "btn btn-success" %>
               </td>
+              <td>
+                <span id="group_buttons"><%= render "show", group: @group %></span>
+              </td>
+              <td>
+                <%= link_to 'Mail', group_new_mail_path(@group), class: "btn btn-info" %>
+              </td>
             <% end %>
-            <td><span id="group_buttons"><%= render "show", group: @group %></span></td>
-            <td colspan="3"><%= link_to 'Mail', group_new_mail_path(@group), class: "btn btn-info" %></td>
           </tr>
         </tbody>
       </table>
