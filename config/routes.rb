@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   get 'search' => 'searches#search'
   get 'tag_search' => 'searches#tag_search'
-  
+
   resources :groups do
     get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
   end
 
   devise_for :users
