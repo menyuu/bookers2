@@ -61,3 +61,5 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'dotenv-rails'
+
+gem 'impressionist'
