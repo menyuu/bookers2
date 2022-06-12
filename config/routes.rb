@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     get "send/mail" => "groups#send_mail"
   end
 
+  resources :rooms, only: [:create, :show]
+  resources :messages, only: [:create]
+
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
