@@ -13,16 +13,28 @@
     </tr>
     <tr>
       <th>follows</th>
-      <th><%= link_to user.followings.count, user_follows_path(user.id) %></th>
+      <th>
+        <%= link_to user_follows_path(user.id) do %>
+          <span id="followings_<%= current_user.id %>">
+            <%= render "relationships/followings", user: user %>
+          </span>
+        <% end %>
+      </th>
     </tr>
     <tr>
       <th>followers</th>
-      <th><%= link_to user.followers.count, user_followers_path(user.id) %></th>
+      <th>
+        <%= link_to user_followers_path(user.id) do %>
+        <span id="followers_<%= user.id %>">
+          <%= render "relationships/followings", user: user %>
+        </span>
+        <% end %>
+      </th>
     </tr>
   </tbody>
 </table>
 
-<div class="row">
+<div class="row btn_content">
   <% if user == current_user %>
     <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
@@ -30,7 +42,9 @@
   <% else %>
     <% unless current_user == user  %>
       <% if current_user.following?(user) %>
-        <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-info btn-block"  %>
+        <span class="btn_content">
+          <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-info btn-block unfollow_btn" %>
+        </span>
         <div>
           <% if current_user.following?(user) && user.following?(current_user) %>
             <% if is_room %>
@@ -46,7 +60,9 @@
           <% end %>
         </div>
       <% else %>
-        <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success btn-block" %>
+        <span class="btn_content">
+          <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-success btn-block follow_btn" %>
+        </span>
       <% end %>
     <% end %>
   </td>

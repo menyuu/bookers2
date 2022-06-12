@@ -1,0 +1,7 @@
+<!--$(document).on('turbolinks:load', function() {-->
+<!--  $(document).on('click', '.unfollow_btn', function() {-->
+    $('.follow').html("<%= j(render "users/follow_index", users: @users) %>");
+    $('#followings_<%= current_user.id %>').html("<%= j(render "relationships/followings", user: @user) %>");
+    $('#followers_<%= @user.id %>').html("<%= j(render "relationships/followers", user: @user) %>");
+<!--  });-->
+<!--});-->
