@@ -8,6 +8,8 @@ class Book < ApplicationRecord
     greater_than_or_equal_to: 1
   }, presence: true
 
+  is_impressionable counter_cache: true
+
   belongs_to :user
 
   has_many :favorites, dependent: :destroy

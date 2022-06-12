@@ -30,6 +30,7 @@ class BooksController < ApplicationController
     @book = Book.new
     book = Book.find(params[:id])
     @user = book.user
+    impressionist(book, nil, unique: [:ip_address])
     @book_comment_new = BookComment.new
     @book_show = book
     @tags = book.tags
