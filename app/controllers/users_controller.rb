@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     @books = @user.books
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
+
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
+
     unless @user.id == current_user.id
       @current_user_entry.each do |cu|
         @user_entry.each do |u|

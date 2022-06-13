@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-md-8 offset-md-1 mt-4 mt-md-0">
-      <%= render "books", {books: @books, tags: @tags} %>
+      <%= render "books", {books: @books, tags: @tags, today_book: @today_book, yesterday_book: @yesterday_book, this_week_book: @this_week_book, last_week_book: @last_week_book} %>
     </div>
   </div>
 </div>

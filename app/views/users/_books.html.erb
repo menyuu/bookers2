@@ -31,3 +31,51 @@
     <% end %>
   </tbody>
 </table>
+
+<table class="table table-bordered">
+  <thead class="table-primary">
+    <tr>
+      <th>今日の投稿</th>
+      <th>昨日の投稿</th>
+      <th>前日比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= today_book.count %></td>
+      <td><%= yesterday_book.count %></td>
+      <% unless yesterday_book.count == 0 %>
+        <td>
+          <% days_difference = today_book.count / yesterday_book.count %>
+          <%= (days_difference * 100).round %>
+        </td>
+      <% else %>
+        <td>前日の投稿はありません</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead class="table-primary">
+    <tr>
+      <th>今週の投稿</th>
+      <th>先週の投稿</th>
+      <th>先週比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= this_week_book.count %></td>
+      <td><%= last_week_book.count %></td>
+      <% unless last_week_book.count == 0 %>
+        <td>
+          <% week_difference = this_week_book.count / last_week_book.count %>
+          <%= (week_difference * 100).round %>
+        </td>
+      <% else %>
+        <td>先週の投稿はありません</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
