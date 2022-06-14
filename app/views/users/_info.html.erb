@@ -1,7 +1,7 @@
 <h2>User info</h2>
 <%= image_tag user.get_profile_image(100, 100), class: "mb-3" %>
 
-<table class="table">
+<table class="table" data-turbolinks="false">
   <tbody>
     <tr>
       <th>name</th>
@@ -22,7 +22,7 @@
   </tbody>
 </table>
 
-<div class="row">
+<div class="row" data-turbolinks="false">
   <% if user == current_user %>
     <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>

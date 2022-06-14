@@ -106,3 +106,54 @@
       </tr>
     </tbody>
 </table>
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script>
+  $(document).on('turbolinks:load', function(){
+    var ctx = document.getElementById('myChart');
+
+    var data = [
+                <%= books.created_days(6).count %>,
+                <%= books.created_days(5).count %>,
+                <%= books.created_days(4).count %>,
+                <%= books.created_days(3).count %>,
+                <%= books.created_days(2).count %>,
+                <%= books.created_days(1).count %>,
+                <%= books.created_days(0).count %>
+                ]
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+                label: '投稿した本の数',
+                data: data,
+                backgroundColor: [
+                    'rgba(0, 0, 0, 0)',
+                ],
+                borderColor: [
+                    'rgba(0, 0, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: '7日間の投稿数の比較',
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              suggestedMax: 10,
+              }
+            }
+        }
+    });
+  });
+</script>
