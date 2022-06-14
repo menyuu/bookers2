@@ -50,9 +50,12 @@ class Book < ApplicationRecord
     end
   end
 
-  scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
-  scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
+  # scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
+  # scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_this_week, -> { where(created_at: Time.current.beginning_of_week..Time.zone.now.end_of_day) }
   scope :created_last_week, -> { where(created_at: (Time.current - 1.week).beginning_of_week..(Time.current - 1.week).end_of_week) }
+
+  scope :created_days, -> (n) { where(created_at: n.days.ago.all_day) }
+
 
 end
