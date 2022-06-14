@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'follows' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
+    get 'search' => 'users#search'
   end
 
   resources :books, only: [:index, :show, :edit, :create, :update, :destroy] do
