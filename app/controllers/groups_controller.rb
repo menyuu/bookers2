@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   before_action :correct_group, only: [:edit, :update]
   before_action :correct_group_mail, only: [:new_mail, :send_mail]
 
@@ -27,7 +26,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
-    @group.users.push(current_user)
+      @group.users.push(current_user)
       redirect_to groups_path
     else
       render :new
@@ -84,5 +83,4 @@ class GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
-
 end

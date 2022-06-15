@@ -1,5 +1,4 @@
 class Tag < ApplicationRecord
-
   validates :tag_name, uniqueness: true
 
   has_many :book_tags, dependent: :destroy

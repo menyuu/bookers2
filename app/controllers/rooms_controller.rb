@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-
   def create
     @room = Room.create
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
@@ -19,11 +18,9 @@ class RoomsController < ApplicationController
     end
   end
 
-
   private
 
   def entry_params
     params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id)
   end
-
 end

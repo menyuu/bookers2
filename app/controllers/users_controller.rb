@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :correct_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
 
@@ -63,7 +62,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
 
   def user_params
@@ -82,5 +80,4 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません'
     end
   end
-
 end

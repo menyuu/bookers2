@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, uniqueness: true, length: {in: 2..20}
-  validates :introduction, length: {maximum: 50}
+  validates :name, uniqueness: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
 
   has_many :books, dependent: :destroy
 
@@ -18,25 +18,23 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   has_many :group_users
   has_many :groups, through: :group_users
-  
+
   has_many :entries, dependent: :destroy
   # has_many :rooms, through: :entries
   has_many :messages, dependent: :destroy
-  
 
   has_one_attached :profile_image
 
   def get_profile_image(width, height)
-  unless profile_image.attached?
-    file_path = Rails.root.join('app/assets/images/no_image.jpg')
-    profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  profile_image.variant(resize_to_limit: [width, height]).processed
-  end
-
 
   def follow(user)
     unless self == user
@@ -52,25 +50,23 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-
   def self.looks(word, search)
     case search
-      when "perfect"
-        User.where("name LIKE ?", "#{word}")
-      when "forward"
-        User.where("name LIKE ?","#{word}%")
-      when "backward"
-        User.where("name LIKE ?", "%#{word}")
-      when "partial"
-        User.where("name LIKE?", "%#{word}%")
+    when "perfect"
+      User.where("name LIKE ?", "#{word}")
+    when "forward"
+      User.where("name LIKE ?", "#{word}%")
+    when "backward"
+      User.where("name LIKE ?", "%#{word}")
+    when "partial"
+      User.where("name LIKE?", "%#{word}%")
     end
   end
-  
+
   def self.guest
     find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
   end
-
 end

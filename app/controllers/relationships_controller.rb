@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-
   before_action :forbid_follow, only: [:create]
 
   def create
@@ -21,7 +20,6 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     @users = user.followers
   end
-
 
   private
 
