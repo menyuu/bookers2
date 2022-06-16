@@ -60,5 +60,4 @@ h2.mt-3
       = f.hidden_field :rate, id: :review_star, class: "d-block"
   .form-group
     = f.submit "Create Book", class: "btn btn-success"
-script
-  |  $('#book_rate').empty(); $('#book_rate').raty({ size: 36, starOff: "<ruby code="= asset_path('star-off.png')"></ruby>", starOn: "<ruby code="= asset_path('star-on.png')"></ruby>", scoreName: 'book[rate]', half: false, }); 
+= render "books/rate_info"
