@@ -96,13 +96,9 @@
   </thead>
     <tbody>
       <tr>
-        <th><%= books.created_days(6).count %></th>
-        <th><%= books.created_days(5).count %></th>
-        <th><%= books.created_days(4).count %></th>
-        <th><%= books.created_days(3).count %></th>
-        <th><%= books.created_days(2).count %></th>
-        <th><%= books.created_days(1).count %></th>
-        <th><%= books.created_days(0).count %></th>
+        <% (0..6).reverse_each do |n| %>
+          <th><%= books.created_days(n).count %></th>
+        <% end %>
       </tr>
     </tbody>
 </table>
@@ -142,7 +138,7 @@
             labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
             datasets: [{
                 label: '投稿した本の数',
-                data: data,
+                data: <%= books.past_week_count %>,
                 backgroundColor: [
                     'rgba(0, 0, 0, 0)',
                 ],
