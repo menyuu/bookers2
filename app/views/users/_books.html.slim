@@ -22,6 +22,10 @@ table.table.table-hover
         td
           - book.tags.each do |tag|
             = link_to tag.tag_name, tag_search_path(tag_id: tag.id)
+          |  <td id="favorite_buttons_
+          = book.id
+          | ">
+          = render "favorites/favorite", book: book
         td
           | コメント数：
           = book.book_comments.count
