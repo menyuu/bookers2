@@ -1,0 +1,35 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+      h2
+        - @not_current_user.each do |user|
+          = link_to user_path(user.user.id) do
+            = user.user.name
+        span
+          | さんとのチャット
+      div
+        - if @messages.exists?
+          - @messages.each do |m|
+            div
+              - if m.user_id == current_user.id
+                .text-right
+                  .mt-3
+                    = image_tag m.user.get_profile_image(80, 80)
+                    div
+                      = m.message
+                      = m.created_at.strftime('%Y/%m/%d %H:%M')
+              - else
+                .text-left
+                  .mt-3
+                    = image_tag m.user.get_profile_image(80, 80)
+                    div
+                      = m.message
+                      = m.created_at.strftime('%Y/%m/%d %H:%M')
+        - else
+          p
+            | チャットをまだしていません
+      div
+        = form_with model: @message, local: true do |f|
+          = f.text_field :message
+          = f.hidden_field :room_id, value: @room.id
+          - f.submit

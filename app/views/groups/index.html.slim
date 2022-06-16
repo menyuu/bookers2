@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-md-3
+      = render "users/info", book: @book, user: current_user
+    .col-md-8.offset-md-1.mt-4.mt-md-0
+      h2
+        | Groups
+      table.table.table-hover
+        thead
+          tr
+            th
+            th
+              | グループ名
+            th
+              | 紹介文
+            th
+              | メンバー数
+            th[colspan="2"]
+        tbody
+          - @groups.each do |group|
+            tr
+              td
+                = image_tag group.get_group_image(80, 80)
+              td
+                = link_to group.name, group_path(group)
+              td
+                = group.introduction
+              td
+                = group.users.count
+              - if group.owner_id == current_user.id
+                td
+                  = link_to "Edit", edit_group_path(group), class: "btn btn-success"
+              td[colspan="2"]

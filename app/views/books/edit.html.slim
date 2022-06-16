@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+      h1
+        | Editing Book
+      - if @book.errors.any?
+        #error_explanation
+          h3
+            - if @book.errors.count == 1
+              = @book.errors.count
+              |  error prohibited this obj from being saved: 
+            - else
+              = @book.errors.count
+              |  errors prohibited this obj from being saved: 
+          ul
+            - @book.errors.full_messages.each do |message|
+              li
+                = message
+      = form_with model: @book, url: book_path, method: :patch do |f|
+        .form-group
+          = f.label :title
+          = f.text_field :title, autofocus: true, class: "form-control"
+        .form-group
+          = f.label :opinion
+          = f.text_area :body, class: "form-control"
+        .form-group
+          = f.label :tag
+          = f.text_area :tag_name, placeholder: "複数入力する場合は , で区切ってください", class: "form-control"
+        #book_rate.form-group
+          = f.label :rate
+          div
+            = f.hidden_field :rate, id: :review_star
+        .form-group
+          = f.submit "Update Book", class: "btn btn-success"
+      = link_to "Show", book_path(@book.id)
+      |  | 
+      = link_to "Back", books_path
+script
+  |  $('#book_rate').empty(); $('#book_rate').raty({ size: 36, starOff: "<ruby code="= asset_path('star-off.png')"></ruby>", starOn: "<ruby code="= asset_path('star-on.png')"></ruby>", scoreName: 'book[rate]', readOnly: true, score: <ruby code="= @book.rate"></ruby> }); 

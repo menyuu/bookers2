@@ -1,0 +1,45 @@
+.container
+  .row
+    .col-md-3
+      = render "users/info", book: @book, user: current_user
+    .col-md-8.offset-md-1.mt-4.mt-md-0
+      h2
+        | Group Detail
+      table.table.table-hover
+        thead
+          tr
+            th
+            th
+              | グループ名
+            th
+              | 紹介文
+            th
+              | オーナー
+            th
+              | メンバー
+            th[colspan="5"]
+        tbody
+          tr
+            td
+              = image_tag @group.get_group_image(80, 80)
+            td
+              = @group.name
+            td
+              = @group.introduction
+            td
+              = link_to @group.users.first.name, user_path(@group.users.first.id)
+            td.group_users_count
+              - @group.users[1..-1].each do |user|
+                = link_to user.name, user_path(user.id)
+                br
+            td[colspan="2"]
+            - if @group.owner_id == current_user.id
+              td
+                = link_to "Edit", edit_group_path(@group), class: "btn btn-success"
+            - else
+              td
+                span#group_buttons
+                  = render "show", group: @group
+            - if @group.owner_id == current_user.id
+              td
+                = link_to 'Notice an Event', group_new_mail_path(@group), class: "btn btn-info"

@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-6.px-5.px-sm-0
+      h2
+        | Sign up
+      = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field.form-group
+          = f.label :name
+          br
+          = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control"
+        .field.form-group
+          = f.label :email
+          br
+          = f.email_field :email, autocomplete: "email", class: "form-control"
+        .field.form-group
+          = f.label :password
+          - if @minimum_password_length
+            em
+              | (
+              = @minimum_password_length
+              |  characters minimum)
+          br
+          = f.password_field :password, autocomplete: "new-password", class: "form-control"
+        .field.form-group
+          = f.label :password_confirmation
+          br
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+        .actions.form-group
+          = f.submit "Sign up", class: "btn btn-sm btn-success"
+      = render "devise/shared/links"

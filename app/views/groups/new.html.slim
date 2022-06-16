@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+      h2
+        | Create Group
+      - if @group.errors.any?
+        #error_explanation
+          h3
+            - if @group.errors.count == 1
+              = @group.errors.count
+              |  error prohibited this obj from being saved: 
+            - else
+              = @group.errors.count
+              |  errors prohibited this obj from being saved: 
+          ul
+            - @group.errors.full_messages.each do |message|
+              li
+                = message
+      = form_with model: @group do |f|
+        .form-group
+          = f.label :グループ名
+          = f.text_field :name, class: "form-control"
+        .form-group
+          = f.label :紹介文
+          = f.text_area :introduction, class: "form-control"
+        .input-group.form-group
+          = f.label :グループ画像
+          = f.file_field :image, accept: "image/*", class: "form-control-file"
+        .form-group
+          = f.submit "Create Group", class: "btn btn-info"

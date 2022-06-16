@@ -1,0 +1,15 @@
+h4
+  | 検索結果
+table.table.table-bordered
+  thead
+    tr
+      th
+        | 投稿数
+  tbody
+    tr
+      td
+        - unless search_book.present?
+          span
+            | 日付を選択してください
+        - else
+          = search_book

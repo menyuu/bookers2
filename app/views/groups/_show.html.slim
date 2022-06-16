@@ -1,0 +1,4 @@
+- if group.users.include?(current_user)
+  = link_to "Leave this group", group_path(group), method: :delete, data: {disable_with: 'Leave this group'}, remote: true, class: "btn btn-danger"
+- else
+  = link_to "Join this group", group_join_path(group), method: :get, data: {disable_with: 'Join this group'}, remote: true, class: "btn btn-success"
