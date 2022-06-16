@@ -54,4 +54,8 @@ class Book < ApplicationRecord
   scope :created_last_week, -> { where(created_at: (Time.current - 1.week).beginning_of_week..(Time.current - 1.week).end_of_week) }
 
   scope :created_days, -> (n) { where(created_at: n.days.ago.all_day) }
+
+  def self.past_week_count
+    (0..6).map { |n| created_days(n).count }.reverse
+  end
 end
