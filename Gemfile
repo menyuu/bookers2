@@ -63,3 +63,7 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 
 gem 'impressionist'
+
+gem 'slim-rails'
+
+gem 'html2slim'

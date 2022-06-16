@@ -103,6 +103,9 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hpricot (0.8.6)
+    html2slim (0.2.0)
+      hpricot
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -250,6 +253,13 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.5.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
     spring (3.1.1)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -259,6 +269,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -297,6 +308,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  html2slim
   image_processing (~> 1.2)
   impressionist
   jbuilder (~> 2.7)
@@ -309,6 +321,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-airbnb
   sass-rails (>= 6)
+  slim-rails
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
