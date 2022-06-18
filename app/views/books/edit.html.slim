@@ -25,7 +25,8 @@
           = f.text_area :body, class: "form-control"
         .form-group
           = f.label :tag
-          = f.text_area :tag_name, placeholder: "複数入力する場合は , で区切ってください", class: "form-control"
+          = f.text_area :tag_name, value: @tag_names, placeholder: "複数入力する場合は , で区切ってください", class: "form-control"
+             = @tag_names
         #book_rate.form-group
           = f.label :rate
           div
