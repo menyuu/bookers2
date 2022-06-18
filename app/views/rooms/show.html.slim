@@ -16,19 +16,21 @@
                   .mt-3
                     = image_tag m.user.get_profile_image(80, 80)
                     div
-                      = m.message
+                      span.mr-3
+                        = m.message
                       = m.created_at.strftime('%Y/%m/%d %H:%M')
               - else
                 .text-left
                   .mt-3
                     = image_tag m.user.get_profile_image(80, 80)
                     div
-                      = m.message
                       = m.created_at.strftime('%Y/%m/%d %H:%M')
+                      span.ml-3
+                        = m.message
         - else
           p
             | チャットをまだしていません
-      div
+      .mt-5
         = form_with model: @message, local: true do |f|
           = f.text_field :message
           = f.hidden_field :room_id, value: @room.id
