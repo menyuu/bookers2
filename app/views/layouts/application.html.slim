@@ -9,7 +9,8 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"]
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    script[src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"]
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" 
+          integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"]
   body
     header
       nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
@@ -17,7 +18,8 @@ html
           a.navbar-brand[href="/" data-turbolinks="false"]
             span
               | Bookers
-          button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"]
+          button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" 
+                                aria-expanded="false" aria-label="Toggle navigation"]
             span.navbar-toggler-icon
           #navbarToggleExternalContent.collapse.navbar-collapse[data-turbolinks="false"]
             ul.navbar-nav.ml-auto
