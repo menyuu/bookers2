@@ -33,7 +33,7 @@
             = book.body
           td
             - book.tags.each do |name|
-              = name.tag_name
+              = link_to name.tag_name + "\t", tag_search_path(tag_id: name.id)
           |  <td id="favorite_buttons_
           = book.id
           | ">

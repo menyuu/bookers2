@@ -54,7 +54,7 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     tags = @book.tags.all
-    @tag_names = tags.pluck(:tag_name).join(",")
+    @tag_names = tags.pluck(:tag_name).join(",") + ","
   end
 
   def update
