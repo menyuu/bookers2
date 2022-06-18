@@ -1,0 +1,72 @@
+doctype html
+html
+  head
+    title
+      | Bookers2
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"]
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    script[src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" 
+          integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"]
+  body
+    header
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container
+          a.navbar-brand[href="/" data-turbolinks="false"]
+            span
+              | Bookers
+          button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" 
+                                aria-expanded="false" aria-label="Toggle navigation"]
+            span.navbar-toggler-icon
+          #navbarToggleExternalContent.collapse.navbar-collapse[data-turbolinks="false"]
+            ul.navbar-nav.ml-auto
+              - if user_signed_in?
+                li
+                  = link_to user_path(current_user), class: "nav-link text-light" do
+                    i.fas.fa-home
+                    |  Home 
+                li
+                  = link_to users_path, class: "nav-link text-light" do
+                    i.fas.fa-users
+                    |  Users 
+                li
+                  = link_to books_path, class: "nav-link text-light" do
+                    i.fas.fa-book-open
+                    |  Books 
+                li
+                  = link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do
+                    i.fas.fa-sign-out-alt
+                    |  Log out 
+              - else
+                li
+                  = link_to root_path, class: "nav-link text-light" do
+                    i.fas.fa-home
+                    |  Home 
+                li
+                  = link_to about_path, class: "nav-link text-light" do
+                    i.fas.fa-link
+                    |  About 
+                li
+                  = link_to new_user_registration_path, class: "nav-link text-light" do
+                    i.fas.fa-user-plus
+                    |  Sign up 
+                li
+                  = link_to new_user_session_path, class: "nav-link text-light" do
+                    i.fas.fa-sign-in-alt
+                    |  Log in 
+    main
+      .container
+        .row
+          p#notice.ml-3
+            - if flash[:notice]
+              = flash[:notice]
+      = yield
+    footer
+      .container.mt-5
+        .row
+          .mx-auto
+            p
+              | CopyRight Infratop.inc

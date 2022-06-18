@@ -1,0 +1,11 @@
+.form-inline
+  div
+    = form_with url: search_path, method: :get, local: true, class: "form-group" do |f|
+      = f.text_field :word, placeholder: "ユーザーまたは本を検索" , class: "form-control"
+      = f.select :model, options_for_select({ "User" => "user", "Book" => "book" }), {}, class: "form-control form-control-sm ml-1"
+      = f.select :search, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }), {}, class: "form-control form-control-sm ml-1"
+      = f.submit "検索", class: "btn btn-primary ml-1"
+  .ml-3
+    = form_with url: tag_search_path, method: :get, local: true, class: "form-group" do |f|
+      = f.text_field :tag_word, placeholder: "タグを検索", class: "form-control"
+      = f.submit "検索", class: "btn btn-primary ml-1"

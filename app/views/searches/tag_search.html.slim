@@ -1,0 +1,45 @@
+.container
+  .row
+    - if user_signed_in?
+      .mx-auto.my-3
+        = render "searches/search"
+.mx-auto.col-12.col-lg-10.mt-3.px-3
+  h2
+    | Books search for "
+    = @tag_name
+    | "
+  table.table.table-hover
+    thead
+      tr
+        th
+        th
+          | Title
+        th
+          | Opinion
+        th
+          | Tag
+        th[colspan="3"]
+    tbody
+      - @books.each do |book|
+        tr
+          td
+            = link_to user_path(book.user) do
+              = image_tag book.user.get_profile_image(60, 60,)
+              br
+              = book.user.name
+          td
+            = link_to book.title, book_path(book)
+          td
+            = book.body
+          td
+            - book.tags.each do |name|
+              = name.tag_name
+          |  <td id="favorite_buttons_
+          = book.id
+          | ">
+          = render "favorites/favorite", book: book
+          td
+            | コメント数：
+            = book.book_comments.count
+          td
+            = render "books/rate", book: book

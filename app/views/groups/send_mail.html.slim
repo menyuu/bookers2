@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-sm-12.col-md-8.col-lg-5.px-5.px-sm-0.mx-auto
+      h2
+        | 送信が完了しました
+      div
+        p
+          | 内容は以下の通りです。
+        section
+          h4
+            | [タイトル]
+          p
+            = @mail_title
+        section
+          h4
+            | [本文]
+          p
+            = safe_join(@mail_content.split("\n"),tag.br)

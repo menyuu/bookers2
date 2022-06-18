@@ -1,0 +1,59 @@
+.container
+  .row
+    - if user_signed_in?
+      .mx-auto.my-3
+        = render "searches/search"
+.container
+  .row
+    .col-md-3
+      = render "info", book: @book, user: @user, is_room: @is_room, room_id: @room_id, room: @room, entry: @entry
+    .col-md-8.offset-md-1.mt-4.mt-md-0
+      h2
+        | Book detail
+      table.table.table-hover
+        tbody
+          tr
+            td
+              = link_to user_path(@user.id) do
+                = image_tag @user.get_profile_image(100, 100)
+                br
+                = @user.name
+            - book = @user.books.find(params[:id])
+            td
+              = link_to book.title, book_path(book)
+            td
+              = book.body
+            td
+              - @tags.each do |tag|
+                div
+                  = link_to tag.tag_name, tag_search_path(tag_id: tag.id)
+            |  <td id="favorite_buttons_
+            = book.id
+            | "> 
+            = render "favorites/favorite", book: book
+            td#comment_count
+              = render "book_comments/comment_count", book: book
+            td
+              = render "rate", book: @book_show
+            td
+              |  閲覧数：
+              = book.impressionist_count
+            - if @user == current_user
+              td
+                = link_to "Edit", edit_book_path(book), class: "btn btn-sm btn-success"
+              td
+                = link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger"
+      table.table.table-hover
+
+      h4.mt-5
+        | Comments
+      tbody#comment
+        = render "book_comments/book_comment", book: book
+      .row
+        .col-12.mt-3
+          = form_with model: [@book_show, @book_comment_new], method: :post, remote: true, local: false do |f|
+            .form-group
+              = f.text_area :comment, autofocus: true, rows: "5", class: "form-control text_area"
+            = f.hidden_field :book_id, value: @book_show.id
+            .form-group
+              = f.submit "Comment Submit", class: "btn btn-sm btn-success"

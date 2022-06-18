@@ -1,0 +1,11 @@
+.container
+  .row
+    - if user_signed_in?
+      .mx-auto.my-3
+        = render "searches/search"
+.container
+  .row
+    .col-md-3
+      = render "info", book: @book, user: @user, is_room: @is_room, room_id: @room_id, room: @room, entry: @entry
+    .col-md-8.offset-md-1.mt-4.mt-md-0
+      = render "books", {books: @books, user: @user, tags: @tags, this_week_book: @this_week_book, last_week_book: @last_week_book, search_book: @search_book}

@@ -1,0 +1,19 @@
+h2
+  | Books
+#sort
+  = sort_order "created_at", "新しい順"
+  |  | 
+  = sort_order "rate", "評価の高い順"
+table.table.table-hover
+  thead
+    tr
+      th
+      th
+        | Title
+      th
+        | Opinion
+      th
+        | Tag
+      th[colspan="7"]
+  tbody#book_index
+    = render "index", {books: books, tags: tags}

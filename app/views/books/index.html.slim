@@ -1,0 +1,24 @@
+.container
+  .row
+    - if user_signed_in?
+      .mx-auto.my-3
+        = render "searches/search"
+- if @book.errors.any?
+  #error_explanation
+    h3
+      - if @book.errors.count == 1
+        = @book.errors.count
+        |  error prohibited this obj from being saved: 
+      - else
+        = @book.errors.count
+        |  errors prohibited this obj from being saved: 
+    ul
+      - @book.errors.full_messages.each do |message|
+        li
+          = message
+.container
+  .row
+    .col-md-3
+      = render "users/info", book: @book, user: @user
+    .col-md-8.offset-md-1.mt-4.mt-md-0
+      = render "books", {books: @books, tags: @tags}

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["KEY"]
+  default from: "運営者<aiueo@test.com>"
   layout 'mailer'
 end
