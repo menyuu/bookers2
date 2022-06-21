@@ -29,7 +29,7 @@
                   = link_to tag.tag_name, tag_search_path(tag_id: tag.id)
             |  <td id="favorite_buttons_
             = book.id
-            | "> 
+            | ">
             = render "favorites/favorite", book: book
             td#comment_count
               = render "book_comments/comment_count", book: book
@@ -47,8 +47,9 @@
 
       h4.mt-5
         | Comments
-      tbody#comment
-        = render "book_comments/book_comment", book: book
+      table
+        tbody#comment
+          = render "book_comments/book_comment", book: book
       .row
         .col-12.mt-3
           = form_with model: [@book_show, @book_comment_new], method: :post, remote: true, local: false do |f|
