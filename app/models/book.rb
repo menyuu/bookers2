@@ -20,7 +20,7 @@ class Book < ApplicationRecord
   has_many :tags, through: :book_tags
 
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    favorites.where(user_id: user.id).exists?
   end
 
   def self.looks(word, search)
