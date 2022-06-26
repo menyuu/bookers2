@@ -1,9 +1,11 @@
 h2
   | Books
 #sort
-  = sort_order "created_at", "新しい順"
-  |  | 
-  = sort_order "rate", "評価の高い順"
+  = link_to "新しい順", books_path(sort: 'created_at DESC'), remote: true
+  / = sort_order "created_at", "新しい順"
+  |  |
+  = link_to "評価の高い順", books_path(sort: 'rate DESC'), remote: true
+  / = sort_order "rate", "評価の高い順"
 table.table.table-hover
   thead
     tr

@@ -5,7 +5,8 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all.order("#{sort_column} #{sort_direction}")
+    @books = Book.all.order(params[:sort])
+    # ("#{sort_column} #{sort_direction}")
     @user = current_user
     @tags = Tag.all
   end
