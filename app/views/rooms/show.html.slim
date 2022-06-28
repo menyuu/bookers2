@@ -11,6 +11,7 @@
        = render "rooms/show", message: @message
       .position-relative
         = form_with model: Message.new, local: false, class:"fixed-bottom" do |f|
-          = f.text_field :message, autofocus: true,  class: "form-control text_field"
+          .form-group.mx-auto.col-sm-8.col-md-6
+            = f.text_field :message, autofocus: true,  class: "form-control text_field"
           = f.hidden_field :room_id, value: @room.id
           - f.submit
