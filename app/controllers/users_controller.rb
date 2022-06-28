@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.includes(profile_image_attachment: :blob)
     @user = current_user
     @book = Book.new
   end
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = @user.books
+    @books = @user.books.includes(:tags)
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
 

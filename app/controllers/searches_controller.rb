@@ -9,10 +9,10 @@ class SearchesController < ApplicationController
   end
 
   def tag_search
-    @tags = Tag.all
+    @tags = Tag.includes([:tags])
     if params[:tag_word]
       if params[:tag_word] == ""
-        @books = Book.all
+        @books = Book.includes(:user, :tags, :book_tags ,user: {profile_image_attachment: :blob})
         @tag_name = "All books"
       else
         @tag = Tag.find_by(tag_name: params[:tag_word])

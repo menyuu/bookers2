@@ -53,13 +53,13 @@ class User < ApplicationRecord
   def self.looks(word, search)
     case search
     when "perfect"
-      User.where("name LIKE ?", "#{word}")
+      User.where("name LIKE ?", "#{word}").includes(profile_image_attachment: :blob)
     when "forward"
-      User.where("name LIKE ?", "#{word}%")
+      User.where("name LIKE ?", "#{word}%").includes(profile_image_attachment: :blob)
     when "backward"
-      User.where("name LIKE ?", "%#{word}")
+      User.where("name LIKE ?", "%#{word}").includes(profile_image_attachment: :blob)
     when "partial"
-      User.where("name LIKE?", "%#{word}%")
+      User.where("name LIKE?", "%#{word}%").includes(profile_image_attachment: :blob)
     end
   end
 
