@@ -10,7 +10,6 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).exists?
       @messages = @room.messages
-      @message = Message.new
       @entries = @room.entries
       @not_current_user = Entry.where.not(user_id: current_user).where(room_id: @room.id)
     else

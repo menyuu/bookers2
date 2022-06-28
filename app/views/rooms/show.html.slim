@@ -7,31 +7,10 @@
             = user.user.name
         span
           | さんとのチャット
-      div
-        - if @messages.exists?
-          - @messages.each do |m|
-            div
-              - if m.user_id == current_user.id
-                .text-right
-                  .mt-3
-                    = image_tag m.user.get_profile_image(80, 80)
-                    div
-                      span.mr-3
-                        = m.message
-                      = m.created_at.strftime('%Y/%m/%d %H:%M')
-              - else
-                .text-left
-                  .mt-3
-                    = image_tag m.user.get_profile_image(80, 80)
-                    div
-                      = m.created_at.strftime('%Y/%m/%d %H:%M')
-                      span.ml-3
-                        = m.message
-        - else
-          p
-            | チャットをまだしていません
-      .mt-5
-        = form_with model: @message, local: true do |f|
-          = f.text_field :message
+      .messages
+       = render "rooms/show", message: @message
+      .position-relative
+        = form_with model: Message.new, local: false, class:"fixed-bottom" do |f|
+          = f.text_field :message, autofocus: true,  class: "form-control text_field"
           = f.hidden_field :room_id, value: @room.id
           - f.submit
