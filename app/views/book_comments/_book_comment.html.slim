@@ -1,4 +1,4 @@
-- book.book_comments.each do |book_comment|
+- book.book_comments.includes(:user).each do |book_comment|
   tr
     td
       = link_to user_path(book_comment.user_id) do
