@@ -5,8 +5,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.includes(:user ,user: {profile_image_attachment: :blob}).order(params[:sort])
-    # ("#{sort_column} #{sort_direction}")
+    @books = Book.includes(:user ,user: {profile_image_attachment: :blob}).order("#{sort_column} #{sort_direction}")
     @user = current_user
     @tags = Tag.all
   end
@@ -89,11 +88,11 @@ class BooksController < ApplicationController
     end
   end
 
-  # def sort_direction
-  #   %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
-  # end
+  def sort_direction
+    %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+  end
 
-  # def sort_column
-  #   Book.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-  # end
+  def sort_column
+    Book.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+  end
 end
