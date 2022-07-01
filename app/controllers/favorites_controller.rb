@@ -6,10 +6,10 @@ class FavoritesController < ApplicationController
     # redirect_to request.referer
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).
+    @books = Book.includes(:user,user: {profile_image_attachment: :blob}).
       sort do |a, b|
-        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-        a.favorited_users.includes(:favorites).where(created_at: from...to).size
+        b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
       end
   end
 
@@ -20,10 +20,10 @@ class FavoritesController < ApplicationController
     # redirect_to request.referer
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).
+    @books = Book.includes(:user,user: {profile_image_attachment: :blob}).
       sort do |a, b|
-        b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-        a.favorited_users.includes(:favorites).where(created_at: from...to).size
+        b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
       end
   end
 end
